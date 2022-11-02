@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Safety</string>
+    <string name="safety_app">Safety App</string>
+    <string name="user_name">Username:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="hint_user_name">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="please_provide_call_permission">Please allow call permission.</string>
+    <string name="plan_a_trip">Plan a trip</string>
+    <string name="virtual_friend_walk">Virtual Friend Walk</string>
+    <string name="saved_trips">Saved Trips</string>
+    <string name="shuttle_schedule">Shuttle Schedule</string>
+</resources>
