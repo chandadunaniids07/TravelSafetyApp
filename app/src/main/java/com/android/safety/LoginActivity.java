@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements EasyPermissions.
     private void handleLogin() {
         String userName = Objects.requireNonNull(binding.evUserName.getText()).toString().trim();
         String password = Objects.requireNonNull(binding.evPassword.getText()).toString().trim();
-        if (userName.equalsIgnoreCase("test") && password.equalsIgnoreCase("test@123")) {
+        if (userName.equalsIgnoreCase("candy") && password.equalsIgnoreCase("candy@123")) {
             startActivity(new Intent(this, MainActivity.class));
         } else {
             Toast.makeText(this, "Incorrect username or password.", Toast.LENGTH_SHORT).show();
