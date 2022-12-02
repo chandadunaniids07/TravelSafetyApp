@@ -127,5 +127,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        binding.btnShuttleSchedule.setOnClickListener(view -> {
+            Intent startShuttle = new Intent(this, ShuttleScheduleActivity.class);
+            startActivity(startShuttle);
+        });
+
+        binding.btnSavedTrips.setOnClickListener(view -> {
+            Intent startTrips = new Intent(this, SavedTripsActivity.class);
+            startActivity(startTrips);
+        });
     }
 }

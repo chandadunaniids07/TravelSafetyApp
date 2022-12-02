@@ -15,6 +15,15 @@
         android:theme="@style/Theme.Safety"
         tools:targetApi="31">
         <activity
+            android:name=".routeViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SavedTripsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShuttleScheduleActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false">
             <meta-data
