@@ -1,11 +1,8 @@
-
 package com.android.safety.locations;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
 public class Properties {
 
     @SerializedName("xid")
@@ -36,7 +33,7 @@ public class Properties {
     }
 
     public String getName() {
-        return name;
+        return name == null ? "" : name;
     }
 
     public void setName(String name) {
@@ -44,7 +41,7 @@ public class Properties {
     }
 
     public Integer getRate() {
-        return rate;
+        return rate == null ? 0 : rate;
     }
 
     public void setRate(Integer rate) {

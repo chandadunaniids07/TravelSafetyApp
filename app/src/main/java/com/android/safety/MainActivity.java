@@ -133,5 +133,15 @@ public class MainActivity extends AppCompatActivity {
             Intent startTrips = new Intent(this, SavedTripsActivity.class);
             startActivity(startTrips);
         });
+
+        binding.btnPlanATrip.setOnClickListener(view -> {
+            Intent startTrips = new Intent(this, PlanATripActivity.class);
+            startActivity(startTrips);
+        });
+
+        binding.btnVirtualFriendWalk.setOnClickListener(view -> {
+            Intent startTrips = new Intent(this, PlanTripActivity.class);
+            startActivity(startTrips);
+        });
     }
 }
