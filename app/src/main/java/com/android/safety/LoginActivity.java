@@ -41,14 +41,20 @@ public class LoginActivity extends AppCompatActivity implements EasyPermissions.
             handleLogin();
         });
         binding.btnSignup.setOnClickListener(view -> {
-
-    });
+            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+        });
     }
 
     private void handleLogin() {
+        binding.evUserName.setError(null);
+        binding.evPassword.setError(null);
         String userName = Objects.requireNonNull(binding.evUserName.getText()).toString().trim();
         String password = Objects.requireNonNull(binding.evPassword.getText()).toString().trim();
-        if (userName.equalsIgnoreCase("candy") && password.equalsIgnoreCase("candy@123")) {
+        if(userName.length() == 0) {
+            binding.evUserName.setError("Please enter username");
+        } else if(password.length() == 0) {
+            binding.evPassword.setError("Please enter password");
+        } else if (userName.equalsIgnoreCase("candy") && password.equalsIgnoreCase("candy@123")) {
             startActivity(new Intent(this, MainActivity.class));
         } else {
             Toast.makeText(this, "Incorrect username or password.", Toast.LENGTH_SHORT).show();

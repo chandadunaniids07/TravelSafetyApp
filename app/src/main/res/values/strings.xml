@@ -4,9 +4,15 @@
     <string name="user_name">Username:</string>
     <string name="password">Password:</string>
     <string name="login">Login</string>
+    <string name="login_ul"><u>Login</u></string>
     <string name="signup">Signup</string>
+    <string name="signup_ul"><u>Signup</u></string>
+    <string name="not_signup">Not yet registered?</string>
+    <string name="already_signup">Already registered?</string>
     <string name="hint_user_name">Username</string>
     <string name="hint_password">Password</string>
+    <string name="hint_conf_password">Confirm Password</string>
+    <string name="hint_email">Email</string>
     <string name="please_provide_call_permission">Please allow call permission.</string>
     <string name="plan_a_trip">Plan a trip</string>
     <string name="virtual_friend_walk">Virtual Friend Walk</string>

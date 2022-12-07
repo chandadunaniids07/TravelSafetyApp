@@ -7,6 +7,7 @@
     <dimen name="dp_50">50dp</dimen>
     <dimen name="dp_100">100dp</dimen>
     <dimen name="dp_150">150dp</dimen>
+    <dimen name="dp_120">120dp</dimen>
     <dimen name="dp_200">200dp</dimen>
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_8">8dp</dimen>

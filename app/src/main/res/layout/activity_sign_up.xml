@@ -4,28 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    tools:context=".SignUpActivity"
     android:padding="@dimen/dp_16">
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnStop"
-        android:layout_width="@dimen/dp_80"
-        android:layout_height="@dimen/dp_80"
-        android:scaleType="fitXY"
-        android:src="@drawable/emergency"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/tvTitle"
         android:layout_width="@dimen/dp_200"
         android:layout_height="@dimen/dp_150"
         android:layout_marginTop="32dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/sju"
+        android:scaleType="centerCrop"
+        android:src="@drawable/travel_bag"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnStop" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/evUserName"
@@ -44,6 +35,22 @@
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/evEmail"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_edittext"
+        android:hint="@string/hint_email"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="@dimen/dp_16"
+        android:paddingVertical="@dimen/dp_8"
+        android:textColor="@color/orange"
+        android:textColorHint="@color/orange_200"
+        app:layout_constraintEnd_toEndOf="@id/evUserName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/evUserName" />
+
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/evPassword"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
@@ -55,25 +62,41 @@
         android:paddingVertical="@dimen/dp_8"
         android:textColor="@color/orange"
         android:textColorHint="@color/orange_200"
-        app:layout_constraintEnd_toEndOf="@id/evUserName"
+        app:layout_constraintEnd_toEndOf="@id/evEmail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/evUserName" />
+        app:layout_constraintTop_toBottomOf="@id/evEmail" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/evConfPassword"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_edittext"
+        android:hint="@string/hint_conf_password"
+        android:inputType="textPassword"
+        android:paddingHorizontal="@dimen/dp_16"
+        android:paddingVertical="@dimen/dp_8"
+        android:textColor="@color/orange"
+        android:textColorHint="@color/orange_200"
+        app:layout_constraintEnd_toEndOf="@id/evPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/evPassword" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="@dimen/dp_50"
         android:layout_marginEnd="32dp"
         android:background="@drawable/btn_selector"
-        android:text="@string/login"
+        android:text="@string/signup"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/evPassword" />
+        app:layout_constraintTop_toBottomOf="@id/evConfPassword" />
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -83,30 +106,31 @@
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignup"
         tools:layout_editor_absoluteX="106dp">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/btnLabelSignup"
+            android:id="@+id/btnLabelLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/not_signup"
+            android:text="@string/already_signup"
             android:textAllCaps="false"
             android:textColor="@color/cyan"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/btnSignup"
+            android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/signup_ul"
+            android:text="@string/login_ul"
             android:textAllCaps="false"
             android:textColor="@color/orange"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnLabelSignup" />
+            app:layout_constraintStart_toEndOf="@+id/btnLabelLogin" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
