@@ -1,14 +1,11 @@
 
 package com.android.safety.locations;
 
-import javax.annotation.Generated;
-
-import com.android.safety.Geometry;
-import com.android.safety.Properties;
+import com.android.safety.locations.Geometry;
+import com.android.safety.locations.Properties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
 public class Feature {
 
     @SerializedName("type")
