@@ -6,7 +6,6 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,7 +17,6 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 
-import com.android.safety.databinding.ActivityLoginBinding;
 import com.android.safety.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
                 null, null, null, null);
 
         if ((cur != null ? cur.getCount() : 0) > 0) {
-            while (cur != null && cur.moveToNext()) {
+            while (cur.moveToNext()) {
                 @SuppressLint("Range") String id = cur.getString(
                         cur.getColumnIndex(ContactsContract.Contacts._ID));
                 @SuppressLint("Range") String name = cur.getString(cur.getColumnIndex(
                         ContactsContract.Contacts.DISPLAY_NAME));
-                Integer num = cur.getColumnIndex(
+                int num = cur.getColumnIndex(
                         ContactsContract.Contacts.HAS_PHONE_NUMBER);
                 if (cur.getInt(num) > 0) {
                     Cursor pCur = cr.query(
@@ -69,9 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleClickListeners() {
-        binding.layoutHeader.ivBack.setOnClickListener(view -> {
-            finish();
-        });
+        binding.layoutHeader.ivBack.setOnClickListener(view -> finish());
 
         binding.btnCall.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "8545784151"));
@@ -85,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.setData(Uri.parse(uri));
                 startActivity(intent);
             } catch (Exception e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.ubercab")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.ubercab")));
             }
         });
 
@@ -118,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= 23) {
                 String[] PERMISSIONS = {android.Manifest.permission.READ_CONTACTS};
                 if (!hasPermissions) {
-                    ActivityCompat.requestPermissions((Activity) this, PERMISSIONS, 1);
+                    ActivityCompat.requestPermissions(this, PERMISSIONS, 1);
                 } else {
                     getContactList();
                 }
@@ -126,6 +122,16 @@ public class MainActivity extends AppCompatActivity {
                 getContactList();
             }
 
+        });
+
+        binding.btnShuttleSchedule.setOnClickListener(view -> {
+            Intent startShuttle = new Intent(this, ShuttleScheduleActivity.class);
+            startActivity(startShuttle);
+        });
+
+        binding.btnSavedTrips.setOnClickListener(view -> {
+            Intent startTrips = new Intent(this, SavedTripsActivity.class);
+            startActivity(startTrips);
         });
     }
 }
