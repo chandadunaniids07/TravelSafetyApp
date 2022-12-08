@@ -60,4 +60,5 @@
     <string name="saved_start2">Start2</string>
     <string name="saved_end2">End2</string>
     <string name="title_activity_plan_atrip">PlanATripActivity</string>
+    <string name="save_a_trip">Save A Trip</string>
 </resources>
