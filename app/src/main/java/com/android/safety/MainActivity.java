@@ -18,10 +18,12 @@ import android.util.Log;
 import android.view.View;
 
 import com.android.safety.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        firebaseAuth = FirebaseAuth.getInstance();
         handleClickListeners();
+        binding.layoutHeader.setIsMainScreen(true);
     }
 
     private void getContactList() {
@@ -68,6 +72,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleClickListeners() {
         binding.layoutHeader.ivBack.setOnClickListener(view -> finish());
+
+        binding.layoutHeader.tvLogout.setOnClickListener(view -> {
+            firebaseAuth.signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+        });
 
         binding.btnCall.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "8545784151"));

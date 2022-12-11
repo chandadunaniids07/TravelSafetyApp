@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.android.safety.databinding.ActivityLoginBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,6 +27,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class LoginActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
     private static final int RC_CALL_PHONE = 101;
     private ActivityLoginBinding binding;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,13 @@ public class LoginActivity extends AppCompatActivity implements EasyPermissions.
         View view = binding.getRoot();
         setContentView(view);
         handleClickListeners();
+        firebaseAuth = FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().getEmail() != null) {
+            Toast.makeText(this, "Welcome back! " + firebaseAuth.getCurrentUser().getEmail(), Toast.LENGTH_LONG).show();
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
+
     }
 
     private void handleClickListeners() {
@@ -48,10 +60,21 @@ public class LoginActivity extends AppCompatActivity implements EasyPermissions.
             binding.evUserName.setError("Please enter username");
         } else if(password.length() == 0) {
             binding.evPassword.setError("Please enter password");
-        } else if (userName.equalsIgnoreCase("test") && password.equalsIgnoreCase("test@123")) {
-            startActivity(new Intent(this, MainActivity.class));
         } else {
-            Toast.makeText(this, "Incorrect username or password.", Toast.LENGTH_SHORT).show();
+            firebaseAuth.signInWithEmailAndPassword(binding.evUserName.getText().toString(), binding.evPassword.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if(task.isSuccessful()) {
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                        finish();
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "Incorrect username or password.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+
         }
     }
 

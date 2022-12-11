@@ -40,8 +40,7 @@
                     android:text="@{model.properties.name}"
                     android:layout_weight="1"
                     android:maxLines="3"
-                    android:textStyle="bold"
-                    android:textColor="@color/purple_700"
+                    android:textColor="@color/purple_500"
                     tools:text="Hello" />
 
 
@@ -62,7 +61,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/orange"
-                        android:textStyle="bold"
                         android:layout_marginStart="@dimen/dp_8"
                         android:text="@{model.properties.rate.toString()}"
                         tools:text="7" />
@@ -105,13 +103,12 @@
                         android:layout_width="@dimen/dp_25"
                         android:layout_height="@dimen/dp_25"
                         android:src="@android:drawable/ic_menu_directions"
-                        />
+                        android:tint="@color/purple_700" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/orange"
-                        android:textStyle="bold"
                         android:layout_marginStart="@dimen/dp_8"
                         android:text="Direction" />
                 </LinearLayout>
@@ -133,13 +130,12 @@
                         android:layout_width="@dimen/dp_25"
                         android:layout_height="@dimen/dp_25"
                         android:src="@android:drawable/ic_menu_info_details"
-                        />
+                        android:tint="@color/purple_700"  />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/orange"
-                        android:textStyle="bold"
                         android:layout_marginStart="@dimen/dp_8"
                         android:text="Wiki Data" />
                 </LinearLayout>
@@ -158,16 +154,15 @@
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/dp_25"
-                        android:layout_height="@dimen/dp_25"
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
                         android:src="@android:drawable/ic_dialog_map"
-                        />
+                        android:tint="@color/purple_700" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/orange"
-                        android:textStyle="bold"
                         android:layout_marginStart="@dimen/dp_8"
                         android:text="OSM View" />
                 </LinearLayout>
