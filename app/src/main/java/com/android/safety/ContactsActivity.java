@@ -18,16 +18,24 @@ import android.util.Log;
 import android.view.View;
 
 import com.android.safety.databinding.ActivityContactsBinding;
-import com.android.safety.databinding.ActivityPlanTripBinding;
 import com.android.safety.locations.Contact;
 import com.android.safety.locations.Feature;
 import com.android.safety.locations.LocationData;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -46,6 +54,7 @@ import androidx.core.content.ContextCompat;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.Manifest;
+import android.widget.Toast;
 
 public class ContactsActivity extends AppCompatActivity {
 
@@ -116,17 +125,45 @@ public class ContactsActivity extends AppCompatActivity {
                         contact.setName(name);
                         contact.setPhoneNumber(phoneNo);
                         contactsList.add(contact);
+
                     }
 
                     pCur.close();
                 }
             }
         }
-        if(cur!=null){
+        if (cur != null) {
             cur.close();
         }
         ContactsRecyclerViewAdapter myRecyclerViewAdapter = new ContactsRecyclerViewAdapter(contactsList, ContactsActivity.this);
         binding.setMyAdapter(myRecyclerViewAdapter);
-    }
 
+        if (contactsList.size() > 0) {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myDatabase = database.getReference("users");
+            if (firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().getEmail() != null) {
+                myDatabase.orderByChild("Email").equalTo(firebaseAuth.getCurrentUser().getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists() && snapshot.getChildrenCount() >= 1) {
+                            for (DataSnapshot child : snapshot.getChildren()) {
+                                Log.d("User key", child.getKey());
+                                snapshot.getRef().child(Objects.requireNonNull(child.getKey())).child("contacts").setValue(contactsList).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(ContactsActivity.this, "Contacts updated!", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        }
+    }
 }

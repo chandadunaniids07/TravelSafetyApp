@@ -81,6 +81,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 HashMap<String, String> dataMap = new HashMap<String, String>();
                                 dataMap.put("Username", binding.evUserName.getText().toString());
                                 dataMap.put("Email", binding.evEmail.getText().toString());
+                                dataMap.put("Key", binding.evEmail.getText().toString());
                                 dataMap.put("Password", binding.evPassword.getText().toString());
 
                                 DatabaseReference myDatabase = database.getReference("users");
