@@ -14,8 +14,6 @@ import com.android.safety.locations.LocationData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
