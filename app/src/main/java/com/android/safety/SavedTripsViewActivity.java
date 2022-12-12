@@ -4,15 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
 
 public class SavedTripsViewActivity extends AppCompatActivity {
 
-
     RecyclerView recyclerSavedTrips;
     ArrayList<Trips> tripsList = new ArrayList<>();
+
+    TripsAdapter.OnItemClickListener listener = new TripsAdapter.OnItemClickListener() {
+        @Override public void onItemClick() {
+            Intent intent = new Intent(SavedTripsViewActivity.this, PlanATripActivity.class);
+            startActivity(intent);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +33,7 @@ public class SavedTripsViewActivity extends AppCompatActivity {
 
         tripsList = (ArrayList<Trips>) getIntent().getExtras().getSerializable("list");
 
-        recyclerSavedTrips.setAdapter(new TripsAdapter(tripsList));
+        recyclerSavedTrips.setAdapter(new TripsAdapter(tripsList, listener));
 
     }
 }
