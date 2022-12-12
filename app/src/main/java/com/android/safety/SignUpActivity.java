@@ -1,5 +1,6 @@
 package com.android.safety;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,14 +8,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.safety.databinding.ActivityLoginBinding;
 import com.android.safety.databinding.ActivitySignUpBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +31,8 @@ public class SignUpActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         handleClickListeners();
+
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     private void handleClickListeners() {
@@ -56,8 +67,34 @@ public class SignUpActivity extends AppCompatActivity {
         } else if(!password.equalsIgnoreCase(confPassword)) {
             binding.evConfPassword.setError("Password and confirm password must be same");
         } else {
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
+
+            firebaseAuth.createUserWithEmailAndPassword(binding.evEmail.getText().toString(), binding.evPassword.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            //checking if success
+                            if(task.isSuccessful()){
+                                //display some message here
+                                Toast.makeText(SignUpActivity.this,"Successfully registered",Toast.LENGTH_LONG).show();
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                                HashMap<String, String> dataMap = new HashMap<String, String>();
+                                dataMap.put("Username", binding.evUserName.getText().toString());
+                                dataMap.put("Email", binding.evEmail.getText().toString());
+                                dataMap.put("Key", binding.evEmail.getText().toString());
+                                dataMap.put("Password", binding.evPassword.getText().toString());
+
+                                DatabaseReference myDatabase = database.getReference("users");
+                                myDatabase.push().setValue(dataMap);
+
+                                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                                finish();
+                            }else{
+                                //display some message here
+                                Toast.makeText(SignUpActivity.this,"Registration Error",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
         }
     }
 

@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/shape_edittext"
-        android:hint="@string/hint_user_name"
+        android:hint="@string/hint_email"
         android:inputType="text"
         android:paddingHorizontal="@dimen/dp_16"
         android:paddingVertical="@dimen/dp_8"

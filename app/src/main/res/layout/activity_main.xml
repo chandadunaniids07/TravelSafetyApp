@@ -1,127 +1,394 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include
-        android:id="@+id/layoutHeader"
-        layout="@layout/nav_header" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
+        <include
+            android:id="@+id/layoutHeader"
+            layout="@layout/nav_header"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnPlanATrip"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp_100"
-        android:text="@string/plan_a_trip"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:layout_marginTop="@dimen/dp_80"
-        android:textSize="@dimen/sp_16"
-        app:layout_constraintEnd_toStartOf="@+id/btnVirtualFriendWalk"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="@dimen/dp_16"
+            app:layout_constraintTop_toBottomOf="@+id/layoutHeader">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnVirtualFriendWalk"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp_0"
-        android:text="@string/virtual_friend_walk"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_16"
-        app:layout_constraintBottom_toBottomOf="@id/btnPlanATrip"
-        app:layout_constraintEnd_toStartOf="@+id/btnSavedTrips"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnPlanATrip"
-        app:layout_constraintTop_toTopOf="@id/btnPlanATrip" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnSavedTrips"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp_0"
-        android:text="@string/saved_trips"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_16"
-        app:layout_constraintBottom_toBottomOf="@id/btnVirtualFriendWalk"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnVirtualFriendWalk"
-        app:layout_constraintTop_toTopOf="@id/btnVirtualFriendWalk" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llTopTripExplore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnCall"
-        android:layout_width="@dimen/dp_100"
-        android:layout_height="@dimen/dp_100"
-        android:layout_marginTop="@dimen/dp_8"
-        android:src="@drawable/ic_call"
-        app:layout_constraintEnd_toStartOf="@+id/btnShuttleSchedule"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnPlanATrip" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/btnPlanATrip"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp_8"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:background="@drawable/btn_shape_option"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                   >
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnShuttleSchedule"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp_100"
-        android:text="@string/shuttle_schedule"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_16"
-        app:layout_constraintBottom_toBottomOf="@id/btnCall"
-        app:layout_constraintEnd_toStartOf="@+id/btnTripWithFriends"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnCall"
-        app:layout_constraintTop_toTopOf="@id/btnCall" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textColor="@color/orange"
+                        android:textSize="@dimen/sp_24"
+                        android:textAlignment="center"
+                        android:text="@string/plan_a_trip" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnTripWithFriends"
-        android:layout_width="@dimen/dp_100"
-        android:layout_height="@dimen/dp_100"
-        android:src="@drawable/car"
-        app:layout_constraintBottom_toBottomOf="@id/btnShuttleSchedule"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnShuttleSchedule"
-        app:layout_constraintTop_toTopOf="@id/btnShuttleSchedule" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnCallList"
-        android:layout_width="@dimen/dp_100"
-        android:layout_height="@dimen/dp_100"
-        android:layout_marginTop="@dimen/dp_8"
-        android:src="@drawable/ic_contacts"
-        app:layout_constraintEnd_toStartOf="@+id/btnShareTrip"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnCall" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnShareTrip"
-        android:layout_width="@dimen/dp_100"
-        android:layout_height="@dimen/dp_100"
-        android:src="@drawable/ic_share"
-        app:layout_constraintBottom_toBottomOf="@id/btnCallList"
-        app:layout_constraintEnd_toStartOf="@+id/btnRoutes"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnCallList"
-        app:layout_constraintTop_toTopOf="@id/btnCallList" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnRoutes"
-        android:layout_width="@dimen/dp_100"
-        android:layout_height="@dimen/dp_100"
-        android:src="@drawable/routes"
-        app:layout_constraintBottom_toBottomOf="@id/btnShareTrip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnShareTrip"
-        app:layout_constraintTop_toTopOf="@id/btnShareTrip"
-        app:layout_constraintVertical_bias="0.0" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/btnVirtualFriendWalk"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp_8"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:background="@drawable/btn_shape_option"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="@+id/btnPlanATrip"
+                    app:layout_constraintStart_toStartOf="parent">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textColor="@color/orange"
+                        android:textSize="@dimen/sp_24"
+                        android:textAlignment="center"
+                        android:text="@string/virtual_friend_walk" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llBelowTripExplore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="@dimen/dp_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/btnSavedTrips"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp_8"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:background="@drawable/btn_shape_option"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textColor="@color/orange"
+                        android:textSize="@dimen/sp_24"
+                        android:textAlignment="center"
+                        android:text="@string/saved_trips" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/btnShuttleSchedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:padding="@dimen/dp_8"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:background="@drawable/btn_shape_option"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textColor="@color/orange"
+                        android:textSize="@dimen/sp_24"
+                        android:textAlignment="center"
+                        android:text="@string/shuttle_schedule" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llBelowTripRoute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="@dimen/dp_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/btnTripWithFriends"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.5"
+                    android:padding="@dimen/dp_8"
+                    android:background="@drawable/btn_shape_option"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_60"
+                        android:src="@drawable/car" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/btnRoutes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.5"
+                    android:padding="@dimen/dp_8"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:background="@drawable/btn_shape_option"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_60"
+                        android:src="@drawable/routes" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llBelowContactShareCall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="@dimen/dp_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/btnCallList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.35"
+                    android:padding="@dimen/dp_8"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:background="@drawable/btn_shape_option"
+                    android:gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_60"
+                        android:tint="@color/orange"
+                        android:src="@drawable/ic_contacts" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/btnShareTrip"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.30"
+                    android:padding="@dimen/dp_8"
+                    android:layout_marginHorizontal="@dimen/dp_8"
+                    android:background="@drawable/btn_shape_option"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_60"
+                        android:tint="@color/orange"
+                        android:src="@drawable/ic_share" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/btnCall"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.35"
+                    android:padding="@dimen/dp_8"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:background="@drawable/btn_shape_option"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_60"
+                        android:tint="@color/orange"
+                        android:src="@drawable/ic_call" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </ScrollView>
+        <!--<androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPlanATrip"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_100"
+            android:text="@string/plan_a_trip"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/dp_80"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintEnd_toStartOf="@+id/btnVirtualFriendWalk"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnVirtualFriendWalk"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_0"
+            android:text="@string/virtual_friend_walk"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintBottom_toBottomOf="@id/btnPlanATrip"
+            app:layout_constraintEnd_toStartOf="@+id/btnSavedTrips"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnPlanATrip"
+            app:layout_constraintTop_toTopOf="@id/btnPlanATrip" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSavedTrips"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_0"
+            android:text="@string/saved_trips"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintBottom_toBottomOf="@id/btnVirtualFriendWalk"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnVirtualFriendWalk"
+            app:layout_constraintTop_toTopOf="@id/btnVirtualFriendWalk" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnCall"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:layout_marginTop="@dimen/dp_8"
+            android:src="@drawable/ic_call"
+            app:layout_constraintEnd_toStartOf="@+id/btnShuttleSchedule"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnPlanATrip" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnShuttleSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_100"
+            android:text="@string/shuttle_schedule"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintBottom_toBottomOf="@id/btnCall"
+            app:layout_constraintEnd_toStartOf="@+id/btnTripWithFriends"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnCall"
+            app:layout_constraintTop_toTopOf="@id/btnCall" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnTripWithFriends"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:src="@drawable/car"
+            app:layout_constraintBottom_toBottomOf="@id/btnShuttleSchedule"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnShuttleSchedule"
+            app:layout_constraintTop_toTopOf="@id/btnShuttleSchedule" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnCallList"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:layout_marginTop="@dimen/dp_8"
+            android:src="@drawable/ic_contacts"
+            app:layout_constraintEnd_toStartOf="@+id/btnShareTrip"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnCall" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnShareTrip"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:src="@drawable/ic_share"
+            app:layout_constraintBottom_toBottomOf="@id/btnCallList"
+            app:layout_constraintEnd_toStartOf="@+id/btnRoutes"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnCallList"
+            app:layout_constraintTop_toTopOf="@id/btnCallList" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnRoutes"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:src="@drawable/routes"
+            app:layout_constraintBottom_toBottomOf="@id/btnShareTrip"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnShareTrip"
+            app:layout_constraintTop_toTopOf="@id/btnShareTrip"
+            app:layout_constraintVertical_bias="0.0" />
+    -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

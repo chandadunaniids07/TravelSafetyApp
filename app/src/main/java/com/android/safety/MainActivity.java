@@ -1,27 +1,22 @@
 package com.android.safety;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.ContentResolver;
+
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
+
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
+
 import android.view.View;
 
 import com.android.safety.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,45 +24,21 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        firebaseAuth = FirebaseAuth.getInstance();
         handleClickListeners();
+        binding.layoutHeader.setIsMainScreen(true);
     }
 
-    private void getContactList() {
-        ContentResolver cr = getContentResolver();
-        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
-                null, null, null, null);
 
-        if ((cur != null ? cur.getCount() : 0) > 0) {
-            while (cur.moveToNext()) {
-                @SuppressLint("Range") String id = cur.getString(
-                        cur.getColumnIndex(ContactsContract.Contacts._ID));
-                @SuppressLint("Range") String name = cur.getString(cur.getColumnIndex(
-                        ContactsContract.Contacts.DISPLAY_NAME));
-                int num = cur.getColumnIndex(
-                        ContactsContract.Contacts.HAS_PHONE_NUMBER);
-                if (cur.getInt(num) > 0) {
-                    Cursor pCur = cr.query(
-                            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                            null,
-                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
-                            new String[]{id}, null);
-                    while (pCur.moveToNext()) {
-                        @SuppressLint("Range") String phoneNo = pCur.getString(pCur.getColumnIndex(
-                                ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        Log.i("TAG", "Name: " + name);
-                        Log.i("TAG", "Phone Number: " + phoneNo);
-                    }
-                    pCur.close();
-                }
-            }
-        }
-        if(cur!=null){
-            cur.close();
-        }
-    }
 
     private void handleClickListeners() {
         binding.layoutHeader.ivBack.setOnClickListener(view -> finish());
+
+        binding.layoutHeader.tvLogout.setOnClickListener(view -> {
+            firebaseAuth.signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+        });
 
         binding.btnCall.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "8545784151"));
@@ -110,18 +81,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.btnCallList.setOnClickListener(view -> {
-            boolean hasPermissions = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
-            if (Build.VERSION.SDK_INT >= 23) {
-                String[] PERMISSIONS = {android.Manifest.permission.READ_CONTACTS};
-                if (!hasPermissions) {
-                    ActivityCompat.requestPermissions(this, PERMISSIONS, 1);
-                } else {
-                    getContactList();
-                }
-            } else {
-                getContactList();
-            }
-
+            Intent startShuttle = new Intent(this, ContactsActivity.class);
+            startActivity(startShuttle);
         });
 
         binding.btnShuttleSchedule.setOnClickListener(view -> {

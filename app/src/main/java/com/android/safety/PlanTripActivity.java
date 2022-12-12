@@ -3,6 +3,7 @@ package com.android.safety;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,27 +11,23 @@ import android.view.View;
 import com.android.safety.databinding.ActivityPlanTripBinding;
 import com.android.safety.locations.Feature;
 import com.android.safety.locations.LocationData;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class PlanTripActivity extends AppCompatActivity {
 
-
     private ActivityPlanTripBinding binding;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,28 +35,30 @@ public class PlanTripActivity extends AppCompatActivity {
         binding = ActivityPlanTripBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        sendRequest("http://api.opentripmap.com/0.1/en/places/bbox?lon_min=-75.2402946&lat_min=39.9953627&lon_max=-73.2402946&lat_max=42.9726154&kinds=interesting_places&format=geojson&apikey=5ae2e3f221c38a28845f05b6894039ce4dff1ecd5e754fab1007115c", new JSONObject());
+        binding.layoutHeader.setIsMainScreen(false);
+        firebaseAuth = FirebaseAuth.getInstance();
+        handleClickListeners();
+        sendRequest();
     }
 
-    private void sendRequest(String url, JSONObject json) {
-        Log.d("LOG", "sendRequest: Das Json: " + json);
+    private void handleClickListeners() {
+        binding.layoutHeader.ivBack.setOnClickListener(view -> finish());
+
+        binding.layoutHeader.tvLogout.setOnClickListener(view -> {
+            firebaseAuth.signOut();
+            startActivity(new Intent(PlanTripActivity.this, LoginActivity.class));
+            finish();
+        });
+    }
+
+    private void sendRequest() {
         // Authentication for the request to raspberry
         OkHttpClient.Builder client = new OkHttpClient.Builder();
 
-
         // Sending out the request to the raspberry
         OkHttpClient okHttpClient = client.build();
-
-        RequestBody body = RequestBody.create(null, new byte[]{});
-        if( json != null) {
-            body = RequestBody.create(MediaType.parse(
-                            "application/json"),
-                    json.toString()
-            );
-        }
-
         Request request = new Request.Builder()
-                .url(url)
+                .url("http://api.opentripmap.com/0.1/en/places/bbox?lon_min=72.3714&lat_min=22.0225&lon_max=72.5714&lat_max=23.0225&kinds=interesting_places&format=geojson&apikey=5ae2e3f221c38a28845f05b6894039ce4dff1ecd5e754fab1007115c")
                 .build();
 
         okHttpClient.newCall(request).enqueue(new Callback() {

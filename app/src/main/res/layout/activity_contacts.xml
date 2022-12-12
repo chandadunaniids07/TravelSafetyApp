@@ -6,7 +6,7 @@
     <data>
         <variable
             name="myAdapter"
-            type="com.android.safety.MyRecyclerViewAdapter" />
+            type="com.android.safety.ContactsRecyclerViewAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +31,7 @@
             app:layout_constraintTop_toBottomOf="@+id/layoutHeader"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/item_trip" />
+            tools:listitem="@layout/item_contact" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

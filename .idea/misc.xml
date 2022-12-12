@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/trev6/AndroidStudioProjects/TeamTravelSafetyApp/app/src/main/res/drawable/color_orange.xml" value="0.313" />
+        <entry key="..\:/Users/trev6/AndroidStudioProjects/TeamTravelSafetyApp/app/src/main/res/drawable/round_gray.xml" value="0.313" />
+        <entry key="..\:/Users/trev6/AndroidStudioProjects/TeamTravelSafetyApp/app/src/main/res/drawable/round_grey.xml" value="0.178" />
         <entry key="..\:/Users/trev6/AndroidStudioProjects/TeamTravelSafetyApp/app/src/main/res/layout/activity_route_view.xml" value="0.15096251266464034" />
         <entry key="..\:/Users/trev6/AndroidStudioProjects/TeamTravelSafetyApp/app/src/main/res/layout/activity_saved_trips.xml" value="0.33" />
+        <entry key="..\:/Users/trev6/AndroidStudioProjects/TeamTravelSafetyApp/app/src/main/res/layout/activity_saved_trips_view.xml" value="0.4276041666666667" />
         <entry key="..\:/Users/trev6/AndroidStudioProjects/TeamTravelSafetyApp/app/src/main/res/layout/activity_shuttle_schedule.xml" value="0.15096251266464034" />
+        <entry key="..\:/Users/trev6/AndroidStudioProjects/TeamTravelSafetyApp/app/src/main/res/layout/row_add_saved.xml" value="0.207193515704154" />
+        <entry key="..\:/Users/trev6/AndroidStudioProjects/TeamTravelSafetyApp/app/src/main/res/layout/row_trips.xml" value="0.33" />
       </map>
     </option>
   </component>
@@ -19,7 +25,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.22" />
+        <option name="scale" value="0.14" />
       </ProjectState>
     </option>
   </component>

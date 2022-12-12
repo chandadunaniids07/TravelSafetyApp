@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".PlanATripActivity">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="model"
+            type="com.android.safety.locations.Contact" />
+
+        <variable
+            name="itemClickListener"
+            type="com.android.safety.ContactsClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> itemClickListener.contactClicked(model)}"
+        app:cardUseCompatPadding="true"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:elevation="@dimen/dp_16">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llTopName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{model.name}"
+                    android:layout_weight="0.5"
+                    android:maxLines="2"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/purple_500"
+                    tools:text="Hello" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{model.phoneNumber}"
+                    android:layout_weight="0.5"
+                    android:maxLines="2"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/orange"
+                    tools:text="Hello" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

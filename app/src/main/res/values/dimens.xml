@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="sp_16">16sp</dimen>
+    <dimen name="sp_24">24sp</dimen>
     <dimen name="sp_32">32sp</dimen>
 
     <dimen name="dp_16">16dp</dimen>
@@ -14,6 +15,10 @@
     <dimen name="dp_2">2dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_80">80dp</dimen>
+    <dimen name="dp_60">60dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
     <dimen name="dp_25">25dp</dimen>
     <dimen name="dp_32">32dp</dimen>
+    <dimen name="dp_36">36dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
 </resources>
