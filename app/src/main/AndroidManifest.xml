@@ -40,10 +40,10 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AZYdf4d4f5s4fasf4a5s4fa564f4" /> <!-- Given key is wrong, pleaseupdate whle sing map -->
+            android:value="AIzaSyB3Zbf9LcK63JP_pBFzMfUKGx9GacsBXtM" /> <!-- Given key is wrong, pleaseupdate whle sing map -->
         <activity
             android:name=".PlanATripActivity"
-            android:exported="false">
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
