@@ -38,7 +38,7 @@ public class PlanTripActivity extends AppCompatActivity {
         binding = ActivityPlanTripBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        sendRequest("http://api.opentripmap.com/0.1/en/places/bbox?lon_min=72.3714&lat_min=22.0225&lon_max=72.5714&lat_max=23.0225&kinds=interesting_places&format=geojson&apikey=5ae2e3f221c38a28845f05b6894039ce4dff1ecd5e754fab1007115c", new JSONObject());
+        sendRequest("http://api.opentripmap.com/0.1/en/places/bbox?lon_min=-75.2402946&lat_min=39.9953627&lon_max=-73.2402946&lat_max=42.9726154&kinds=interesting_places&format=geojson&apikey=5ae2e3f221c38a28845f05b6894039ce4dff1ecd5e754fab1007115c", new JSONObject());
     }
 
     private void sendRequest(String url, JSONObject json) {
