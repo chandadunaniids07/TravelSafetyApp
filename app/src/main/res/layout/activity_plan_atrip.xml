@@ -7,37 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".PlanATripActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/location_text_input"
+    <fragment
+        android:id="@+id/autocomplete_fragment"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/destination_text_input"
+        app:layout_constraintBottom_toTopOf="@+id/autocomplete_fragment2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Your Location" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/destination_text_input"
+    <fragment
+        android:id="@+id/autocomplete_fragment2"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="619dp"
-        app:layout_constraintBottom_toTopOf="@id/frame_layout"
+        app:layout_constraintBottom_toTopOf="@+id/frame_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_text_input">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Your Destination" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@id/autocomplete_fragment" />
 
     <FrameLayout
         android:id="@+id/frame_layout"
@@ -46,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/destination_text_input"/>
+        app:layout_constraintTop_toBottomOf="@id/autocomplete_fragment2"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

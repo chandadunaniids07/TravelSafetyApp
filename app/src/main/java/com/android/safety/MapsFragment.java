@@ -1,5 +1,10 @@
 package com.android.safety;
 
+import static com.android.safety.PlanATripActivity.destinationMarker;
+import static com.android.safety.PlanATripActivity.starterMarker;
+
+import com.android.safety.PlanATripActivity.*;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -49,6 +54,33 @@ public class MapsFragment extends Fragment {
                         // Add marker on map
                         googleMap.addMarker(markerOptions);
                     }
+                    /*
+                    if (starterMarker != null) {
+                        LatLng sMark = starterMarker;
+                        MarkerOptions markerOptions=new MarkerOptions();
+                        // Set position of marker
+                        markerOptions.position(sMark);
+                        // Set title of marker
+                        markerOptions.title(sMark.latitude+" : "+ sMark.longitude);
+                        // Animating to zoom the marker
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sMark,10));
+                        // Add marker on map
+                        googleMap.addMarker(markerOptions);
+                    }
+                if (destinationMarker != null) {
+                        LatLng dMark = destinationMarker;
+                        MarkerOptions markerOptions = new MarkerOptions();
+                        // Set position of marker
+                        markerOptions.position(dMark);
+                        // Set title of marker
+                        markerOptions.title(dMark.latitude + " : " + dMark.longitude);
+                        // Animating to zoom the marker
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(dMark, 10));
+                        // Add marker on map
+                        googleMap.addMarker(markerOptions);
+                }
+
+                 */
                 });
             }
         });
