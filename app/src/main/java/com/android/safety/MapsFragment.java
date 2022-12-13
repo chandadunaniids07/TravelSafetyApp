@@ -1,13 +1,14 @@
 package com.android.safety;
 
-import static com.android.safety.PlanATripActivity.destinationMarker;
-import static com.android.safety.PlanATripActivity.starterMarker;
+import static com.android.safety.PlanATripActivity.updateMarkers;
 
 import com.android.safety.PlanATripActivity.*;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,72 +20,39 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsFragment extends Fragment {
+public class MapsFragment extends Fragment implements OnMapReadyCallback{
+    public LatLng starterMarker = new LatLng(39.9970, -75.2348);
+    public LatLng destinationMarker = new LatLng(39.9955, -75.2378);
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Initialize view
         View view=inflater.inflate(R.layout.fragment_maps, container, false);
-
-        // Initialize map fragment
-        SupportMapFragment supportMapFragment=(SupportMapFragment)
-                getChildFragmentManager().findFragmentById(R.id.google_map);
-
-        // Async map
-        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-                // When map is loaded
-                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                    @Override
-                    public void onMapClick(LatLng latLng) {
-                        // When clicked on map
-                        // Initialize marker options
-                        MarkerOptions markerOptions=new MarkerOptions();
-                        // Set position of marker
-                        markerOptions.position(latLng);
-                        // Set title of marker
-                        markerOptions.title(latLng.latitude+" : "+latLng.longitude);
-                        // Remove all marker
-                        googleMap.clear();
-                        // Animating to zoom the marker
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
-                        // Add marker on map
-                        googleMap.addMarker(markerOptions);
-                    }
-                    /*
-                    if (starterMarker != null) {
-                        LatLng sMark = starterMarker;
-                        MarkerOptions markerOptions=new MarkerOptions();
-                        // Set position of marker
-                        markerOptions.position(sMark);
-                        // Set title of marker
-                        markerOptions.title(sMark.latitude+" : "+ sMark.longitude);
-                        // Animating to zoom the marker
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sMark,10));
-                        // Add marker on map
-                        googleMap.addMarker(markerOptions);
-                    }
-                if (destinationMarker != null) {
-                        LatLng dMark = destinationMarker;
-                        MarkerOptions markerOptions = new MarkerOptions();
-                        // Set position of marker
-                        markerOptions.position(dMark);
-                        // Set title of marker
-                        markerOptions.title(dMark.latitude + " : " + dMark.longitude);
-                        // Animating to zoom the marker
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(dMark, 10));
-                        // Add marker on map
-                        googleMap.addMarker(markerOptions);
-                }
-
-                 */
-                });
-            }
-        });
-        // Return view
+        PlanATripActivity activity = (PlanATripActivity) getActivity();
+        Bundle args = getArguments();
+        if (args != null) {
+            starterMarker = new LatLng(args.getDouble("starterMarkerLat", 39.9970),
+                    args.getDouble("starterMarkerLng", -75.2348));
+            destinationMarker = new LatLng(args.getDouble("destinationMarkerLat", 39.9955),
+                    args.getDouble("destinationMarkerLng", -75.2378));
+        }
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        SupportMapFragment supportMapFragment = (SupportMapFragment)
+                getChildFragmentManager().findFragmentById(R.id.google_map);
+        supportMapFragment.getMapAsync(this);
+
+    }
+
+    public void onMapReady(GoogleMap googleMap) {
+        googleMap.addMarker(new MarkerOptions().position(starterMarker));
+        googleMap.addMarker(new MarkerOptions().position(destinationMarker));
+    }
+
 }

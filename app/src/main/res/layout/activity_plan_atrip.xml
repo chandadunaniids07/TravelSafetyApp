@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/plantripbutton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PlanATripActivity">
@@ -27,6 +27,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/autocomplete_fragment" />
 
+    <Button
+        android:id="@+id/plan_trip_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plan Trip!"
+        app:layout_constraintBottom_toTopOf="@id/frame_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/autocomplete_fragment2"
+        android:onClick="planTripButton"/>
+
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
@@ -34,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/autocomplete_fragment2"/>
+        app:layout_constraintTop_toBottomOf="@id/autocomplete_fragment2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
